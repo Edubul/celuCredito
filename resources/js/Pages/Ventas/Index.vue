@@ -62,7 +62,7 @@
             </td>
           </tr>
           <tr v-if="ventas.data.length === 0">
-            <td class="px-6 py-4 border-t" colspan="4">No hay ventas encontradas..</td>
+            <td class="px-6 py-4 border-t" colspan="4">No hay ventas encontradas.</td>
           </tr>
         </tbody>
       </table>

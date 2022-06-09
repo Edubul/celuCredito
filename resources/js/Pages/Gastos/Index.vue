@@ -53,7 +53,7 @@
             </td>
           </tr>
           <tr v-if="gastos.data.length === 0">
-            <td class="px-6 py-4 border-t" colspan="4">No organizations found.</td>
+            <td class="px-6 py-4 border-t" colspan="4">No hay gastos encontrados.</td>
           </tr>
         </tbody>
       </table>

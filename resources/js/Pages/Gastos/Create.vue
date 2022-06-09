@@ -20,8 +20,6 @@
           </div>
         </div>
         <div class="flex items-center justify-end px-8 py-4 bg-gray-50 border-t border-gray-100">
-          <button class="text-red-600 hover:underline" tabindex="-1" type="button" @click="destroy">Borrar Venta</button>
-
           <loading-button :loading="form.processing" class="btn-indigo" type="submit">Crear Gasto</loading-button>
         </div>
       </form>

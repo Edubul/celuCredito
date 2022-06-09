@@ -8,9 +8,9 @@
     <div class="max-w-3xl bg-white rounded-md shadow overflow-hidden">
       <form @submit.prevent="store">
         <div class="flex flex-wrap -mb-8 -mr-6 p-8">
-          <select-input v-model="form.marca" :error="form.errors.marca" class="pb-8 pr-6 w-full lg:w-1/2" label="Marca">
-            <option :value="null" @click="disabled = true" />
-            <option v-for="(marca, index) in marcas" :key="index" :value="index" @click=";[(marcaSelect = index), (disabled = false)]">
+          <select-input v-model="form.marca" :error="form.errors.marca" @change="changeMarca($event)" class="pb-8 pr-6 w-full lg:w-1/2" label="Marca">
+            <option :value="null" />
+            <option v-for="(marca, index) in marcas" :key="index" :value="index" @click=";[(marcaSelect = index), (disabled = false), (changeSelected(index))]">
               {{ marca }}
             </option>
           </select-input>
@@ -52,7 +52,7 @@ export default {
   layout: Layout,
   remember: 'form',
   props: {
-    marcas: Array,
+    marcas: Object,
     modelos: Object,
     users: Object,
   },
@@ -72,9 +72,11 @@ export default {
       fecha: null,
     })
 
-    watch(marcaSelect, (newValue) => {
-      Inertia.get('/ventas/create', { modelos: newValue }, { preserveState: true }, 150)
-    })
+    const changeMarca = (e) => {
+      marcaSelect.value = e.target.value
+      disabled.value = false
+      Inertia.get('/ventas/create', { modelos: marcaSelect.value }, { preserveState: true }, 150)
+    }
 
     function store() {
       form.post('/ventas')
@@ -84,6 +86,7 @@ export default {
       form,
       disabled,
       store,
+      changeMarca,
       total,
       marcaSelect,
     }
