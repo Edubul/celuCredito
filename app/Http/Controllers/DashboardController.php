@@ -18,16 +18,16 @@ class DashboardController extends Controller
         $date = (Request::get('date')) ? Request::get('date') : date('Y-m-d');
         $dateTime = date('Y-m-d', strtotime($date));
         $totalGastos = Gastos::sum('cantidad');
-        $totalVentas = Celulares::join('ventas', 'ventas.id_celular', '=', 'celulares.id')->sum('precio');
+        $totalVentas = Ventas::sum('precio');
         $totalCelulares = Celulares::sum('stock');
-        $totalVentasHoy = Celulares::join('ventas', 'ventas.id_celular', '=', 'celulares.id')->where('ventas.fecha', $dateTime)->sum('precio');
+        $totalVentasHoy = Celulares::join('ventas', 'ventas.id_celular', '=', 'celulares.id')->where('ventas.fecha', $dateTime)->sum('ventas.precio');
         $totalGastosHoy = Gastos::where('fecha', $dateTime)->sum('cantidad');
 
         $resumenToday = Ventas::select(
             'celulares.modelo',
             'marcas.name',
             DB::raw('count(ventas.id_celular) as totalVendidos'),
-            DB::raw('sum(celulares.precio) as precioTotal'),
+            DB::raw('sum(ventas.precio) as precioTotal'),
             'ventas.fecha'
         )
             ->join('celulares', 'celulares.id', '=', 'ventas.id_celular')

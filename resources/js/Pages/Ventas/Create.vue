@@ -10,7 +10,7 @@
         <div class="flex flex-wrap -mb-8 -mr-6 p-8">
           <select-input v-model="form.marca" :error="form.errors.marca" @change="changeMarca($event)" class="pb-8 pr-6 w-full lg:w-1/2" label="Marca">
             <option :value="null" />
-            <option v-for="(marca, index) in marcas" :key="index" :value="index" @click=";[(marcaSelect = index), (disabled = false), (changeSelected(index))]">
+            <option v-for="(marca, index) in marcas" :key="index" :value="index" @click=";[(marcaSelect = index), (disabled = false), changeSelected(index)]">
               {{ marca }}
             </option>
           </select-input>
@@ -21,8 +21,14 @@
           <text-input v-model="form.numero_celular_cliente" :error="form.errors.numero_celular_cliente" class="pb-8 pr-6 w-full lg:w-1/2" label="Número de telefono" />
           <text-input v-model="form.imei" :error="form.errors.imei" class="pb-8 pr-6 w-full lg:w-1/2" label="IMEI Celular" />
           <text-input v-model="form.cc_cliente" :error="form.errors.cc_cliente" class="pb-8 pr-6 w-full lg:w-1/2" label="Cédula Ciudadana" />
-          <label for="fecha" class="form-label">Fecha</label>
-          <input v-model="form.fecha" type="date" name="fecha" class="form-input w-full" />
+          <text-input v-model="form.precio" :error="form.errors.precio" class="pb-8 pr-6 w-full lg:w-1/2" label="Precio" />
+          <br />
+          <div class="flex flex-row w-1/2">
+            <div class="w-full">
+              <label for="fecha">Fecha</label>
+              <input v-model="form.fecha" type="date" name="fecha" class="form-input mt-2 w-full lg:w-1/2" />
+            </div>
+          </div>
         </div>
         <div class="flex items-center justify-end px-8 py-4 bg-gray-50 border-t border-gray-100">
           <loading-button :loading="form.processing" class="btn-indigo" type="submit">Crear Venta</loading-button>
@@ -69,6 +75,7 @@ export default {
       numero_celular_cliente: null,
       imei: null,
       cc_cliente: null,
+      precio: null,
       fecha: null,
     })
 

@@ -37,7 +37,6 @@ class CelularesController extends Controller
             'modelo' => ['required', 'string', 'max:25'],
             'marca_id' => ['required', 'integer', 'exists:marcas,id'],
             'stock' => ['required', 'min:1'],
-            'precio' => ['required', 'min:1']
         ]);
 
 
@@ -45,7 +44,6 @@ class CelularesController extends Controller
             'modelo' => $request['modelo'],
             'marca_id' => $request['marca_id'],
             'stock' => $request['stock'],
-            'precio' => $request['precio'],
         ]);
 
         return Redirect::back()->with('success', 'Celular agregado correctamente');
@@ -70,7 +68,6 @@ class CelularesController extends Controller
             'modelo' => ['required', 'string', 'max:25'],
             'marca_id' => ['required', 'integer', 'exists:marcas,id'],
             'stock' => ['required', 'min:1'],
-            'precio' => ['required', 'min:1'],
         ]);
 
         $celular = Celulares::findOrFail($request['id'])->where('id', $request['id'])->first();
@@ -80,7 +77,6 @@ class CelularesController extends Controller
             'modelo' => $request['modelo'],
             'marca_id' => $request['marca_id'],
             'stock' => $request['stock'],
-            'precio' => $request['precio'],
 
         ]);
 

@@ -17,7 +17,6 @@ class CreateCelularesTable extends Migration
             $table->id();
             $table->string('modelo')->nullable(false);
             $table->unsignedBigInteger('marca_id')->nullable(false);
-            $table->float('precio')->nullable(false);
             $table->integer('stock')->nullable(false);
 
             // FK

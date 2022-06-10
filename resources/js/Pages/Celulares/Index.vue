@@ -23,7 +23,6 @@
             <th class="pb-4 pt-6 px-6">Modelo</th>
             <th class="pb-4 pt-6 px-6">Marca</th>
             <th class="pb-4 pt-6 px-6">Stock</th>
-            <th class="pb-4 pt-6 px-6">Precio</th>
           </tr>
         </thead>
         <tbody>
@@ -43,9 +42,6 @@
               <Link class="flex items-center px-6 py-4" :href="`/celulares/${celular.id}/edit`" tabindex="-1">
                 {{ celular.stock }}
               </Link>
-            </td>
-            <td class="border-t">
-              <Link class="flex items-center px-6 py-4" :href="`/celulares/${celular.id}/edit`" tabindex="-1"> $ {{ celular.precio }} </Link>
             </td>
             <td class="w-px border-t">
               <Link class="flex items-center px-4" :href="`/celulares/${celular.id}/edit`" tabindex="-1">

@@ -17,7 +17,7 @@ class VentasController extends Controller
     //
     public function index()
     {
-        $ventas = Ventas::select('ventas.id', 'celulares.modelo', 'marcas.name', 'ventas.nombre_cliente', 'ventas.numero_celular_cliente', 'ventas.imei', 'ventas.fecha', 'ventas.cc_cliente')
+        $ventas = Ventas::select('ventas.id', 'celulares.modelo', 'marcas.name', 'ventas.nombre_cliente', 'ventas.numero_celular_cliente', 'ventas.imei', 'ventas.precio', 'ventas.fecha', 'ventas.cc_cliente')
             ->join('celulares', 'celulares.id', '=', 'ventas.id_celular')
             ->join('marcas', 'marcas.id', '=', 'celulares.marca_id')
             ->orderBy('fecha', 'desc')->paginate(10);
@@ -52,6 +52,7 @@ class VentasController extends Controller
                 'cc_cliente' => $venta->cc_cliente,
                 'fecha' => $venta->fecha,
                 'marcas' => $marcas,
+                'precio' => $venta->precio,
                 'modelos' => $modelos,
             ],
         ]);
@@ -69,6 +70,7 @@ class VentasController extends Controller
             'numero_celular_cliente' => ['required', 'max:50'],
             'imei' => ['required', 'numeric'],
             'cc_cliente' => ['required', 'max:50'],
+            'precio' => ['required'],
             'fecha' => ['required', 'max:50'],
         ]);
         $celular = Celulares::where('marca_id', Request::only('marca'))->first();
@@ -80,6 +82,7 @@ class VentasController extends Controller
                 'numero_celular_cliente' => $request['numero_celular_cliente'],
                 'imei' => $request['imei'],
                 'cc_cliente' => $request['cc_cliente'],
+                'precio' => $request['precio'],
                 'fecha' => $request['fecha'],
             ]
         );
@@ -99,6 +102,7 @@ class VentasController extends Controller
             'numero_celular_cliente' => ['required', 'max:50'],
             'imei' => ['required', 'numeric'],
             'cc_cliente' => ['required', 'max:50'],
+            'precio' => ['required'],
             'fecha' => ['required', 'max:50'],
         ]);
         $celular->update(
@@ -110,6 +114,7 @@ class VentasController extends Controller
             'numero_celular_cliente' => $request['numero_celular_cliente'],
             'imei' => $request['imei'],
             'cc_cliente' => $request['cc_cliente'],
+            'precio' => $request['precio'],
             'fecha' => $request['fecha'],
         ]);
         return Redirect::route('ventas')->with('success', 'Venta creada exitosamente.');

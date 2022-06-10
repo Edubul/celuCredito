@@ -26,6 +26,7 @@
             <th class="pb-4 pt-6 px-6">Nombre del cliente</th>
             <th class="pb-4 pt-6 px-6">Numero celular</th>
             <th class="pb-4 pt-6 px-6">CC</th>
+            <th class="pb-4 pt-6 px-6">Precio</th>
             <th class="pb-4 pt-6 px-6">Fecha</th>
           </tr>
         </thead>
@@ -51,6 +52,9 @@
             </td>
             <td class="border-t">
               <Link class="flex items-center px-6 py-4" :href="`/ventas/${venta.id}/edit`" tabindex="-1"> {{ venta.cc_cliente }} </Link>
+            </td>
+            <td class="border-t">
+              <Link class="flex items-center px-6 py-4" :href="`/ventas/${venta.id}/edit`" tabindex="-1"> {{ price.format(venta.precio) }} </Link>
             </td>
             <td class="border-t">
               <Link class="flex items-center px-6 py-4" :href="`/ventas/${venta.id}/edit`" tabindex="-1"> {{ venta.fecha }} </Link>
@@ -95,7 +99,13 @@ export default {
     ventas: Object,
   },
   data() {
+      const price = new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+      minimumFractionDigits: 2,
+    })
     return {
+      price,
       form: {
         // search: this.filters.search,
         // trashed: this.filters.trashed,

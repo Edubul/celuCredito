@@ -15,7 +15,6 @@
             <option v-for="(marca, index) in marcas" :key="marca.id" :value="index + 1">{{ marca.name }}</option>
           </select-input>
           <text-input v-model="form.stock" :error="form.errors.stock" class="pb-8 pr-6 w-full lg:w-1/2" label="Stock" />
-          <text-input v-model="form.precio" :error="form.errors.precio" class="pb-8 pr-6 w-full lg:w-1/2" label="Precio" />
         </div>
         <div class="flex items-center px-8 py-4 bg-gray-50 border-t border-gray-100">
           <button v-if="!celular.deleted_at" class="text-red-600 hover:underline" tabindex="-1" type="button" @click="destroy">Borrar Celular</button>

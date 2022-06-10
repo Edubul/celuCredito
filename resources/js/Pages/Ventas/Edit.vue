@@ -25,8 +25,14 @@
           <text-input v-model="form.numero_celular_cliente" :error="form.errors.numero_celular_cliente" class="pb-8 pr-6 w-full lg:w-1/2" label="Número de telefono" />
           <text-input v-model="form.imei" :error="form.errors.imei" class="pb-8 pr-6 w-full lg:w-1/2" label="IMEI Celular" />
           <text-input v-model="form.cc_cliente" :error="form.errors.cc_cliente" class="pb-8 pr-6 w-full lg:w-1/2" label="Cédula Ciudadana" />
-          <label for="fecha" class="form-label">Fecha</label>
-          <input v-model="form.fecha" type="date" name="fecha" class="form-input w-full" />
+          <text-input v-model="form.precio" :error="form.errors.precio" class="pb-8 pr-6 w-full lg:w-1/2" label="Precio" />
+          <br />
+          <div class="flex flex-row w-1/2">
+            <div class="w-full">
+              <label for="fecha">Fecha</label>
+              <input v-model="form.fecha" type="date" name="fecha" class="form-input mt-2 w-full lg:w-1/2" />
+            </div>
+          </div>
         </div>
         <div class="flex items-center px-8 py-4 bg-gray-50 border-t border-gray-100">
           <button v-if="!venta.deleted_at" class="text-red-600 hover:underline" tabindex="-1" type="button" @click="destroy">Borrar Venta</button>
@@ -73,6 +79,7 @@ export default {
       numero_celular_cliente: props.venta.numero_celular_cliente,
       imei: props.venta.imei,
       cc_cliente: props.venta.cc_cliente,
+      precio: props.venta.precio,
       fecha: props.venta.fecha,
       modelo: props.venta.modelos,
     })

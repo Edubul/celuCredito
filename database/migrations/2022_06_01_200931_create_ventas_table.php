@@ -20,6 +20,7 @@ class CreateVentasTable extends Migration
             $table->string('numero_celular_cliente')->nullable(false);
             $table->string('imei')->nullable(false);
             $table->integer('cc_cliente')->unsigned()->nullable(false);
+            $table->integer('precio')->unsigned()->nullable(false);
             $table->date('fecha')->nullable(false);
 
             // FK

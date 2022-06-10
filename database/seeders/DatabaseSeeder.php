@@ -33,41 +33,41 @@ class DatabaseSeeder extends Seeder
             'owner' => true,
         ]);
 
-        // User::factory(5)->create(['account_id' => $account->id]);
+        User::factory(5)->create(['account_id' => $account->id]);
 
-        // $organizations = Organization::factory(100)
-        //     ->create(['account_id' => $account->id]);
+        $organizations = Organization::factory(100)
+            ->create(['account_id' => $account->id]);
 
-        // Contact::factory(100)
-        //     ->create(['account_id' => $account->id])
-        //     ->each(function ($contact) use ($organizations) {
-        //         $contact->update(['organization_id' => $organizations->random()->id]);
-        //     });
+        Contact::factory(100)
+            ->create(['account_id' => $account->id])
+            ->each(function ($contact) use ($organizations) {
+                $contact->update(['organization_id' => $organizations->random()->id]);
+            });
 
         Marcas::factory(10)->create();
 
-        // Celulares::factory(20)->create()->each(function ($celular) {
-        //     $celular->update([
-        //         'marca_id' => Marcas::inRandomOrder()->first()->id,
-        //     ]);
-        // });
+        Celulares::factory(20)->create()->each(function ($celular) {
+            $celular->update([
+                'marca_id' => Marcas::inRandomOrder()->first()->id,
+            ]);
+        });
 
-        // Reportes::factory(10)->create()->each(function ($reporte) {
-        //     $reporte->update([
-        //         'user_id' => User::inRandomOrder()->first()->id,
-        //     ]);
-        // });
+        Reportes::factory(10)->create()->each(function ($reporte) {
+            $reporte->update([
+                'user_id' => User::inRandomOrder()->first()->id,
+            ]);
+        });
 
-        // Ventas::factory(10)->create()->each(function ($venta) {
-        //     $venta->update([
-        //         'id_celular' => Celulares::inRandomOrder()->first()->id,
-        //     ]);
-        // });
+        Ventas::factory(10)->create()->each(function ($venta) {
+            $venta->update([
+                'id_celular' => Celulares::inRandomOrder()->first()->id,
+            ]);
+        });
 
-        // Gastos::factory(10)->create()->each(function ($gasto) {
-        //     $gasto->update([
-        //         'user_id' => User::inRandomOrder()->first()->id,
-        //     ]);
-        // });
+        Gastos::factory(10)->create()->each(function ($gasto) {
+            $gasto->update([
+                'user_id' => User::inRandomOrder()->first()->id,
+            ]);
+        });
     }
 }
