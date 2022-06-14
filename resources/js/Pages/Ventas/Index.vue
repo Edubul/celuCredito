@@ -4,11 +4,12 @@
     <h1 class="mb-8 text-3xl font-bold">Ventas</h1>
     <div class="flex items-center justify-between mb-6">
       <search-filter v-model="form.search" class="mr-4 w-full max-w-md" @reset="reset">
-        <label class="block text-gray-700">Trashed:</label>
-        <select v-model="form.trashed" class="form-select mt-1 w-full">
+        <label class="block text-gray-700">Opciones:</label>
+        <select v-model="form.opcion" class="form-select mt-1 w-full">
           <option :value="null" />
-          <option value="with">With Trashed</option>
-          <option value="only">Only Trashed</option>
+          <option value="imei">IMEI</option>
+          <option value="cc_cliente">Cédula ciudadana</option>
+          <option value="num_celular">Numero celular</option>
         </select>
       </search-filter>
       <Link class="btn-indigo" href="/ventas/create">
@@ -95,11 +96,11 @@ export default {
   },
   layout: Layout,
   props: {
-    // filters: Object,
+    filters: Object,
     ventas: Object,
   },
   data() {
-      const price = new Intl.NumberFormat('en-US', {
+    const price = new Intl.NumberFormat('en-US', {
       style: 'currency',
       currency: 'USD',
       minimumFractionDigits: 2,
@@ -107,8 +108,8 @@ export default {
     return {
       price,
       form: {
-        // search: this.filters.search,
-        // trashed: this.filters.trashed,
+        search: this.filters.search,
+        opcion: this.filters.opcion,
       },
     }
   },
@@ -116,7 +117,7 @@ export default {
     form: {
       deep: true,
       handler: throttle(function () {
-        this.$inertia.get('/organizations', pickBy(this.form), { preserveState: true })
+        this.$inertia.get('/ventas', pickBy(this.form), { preserveState: true })
       }, 150),
     },
   },

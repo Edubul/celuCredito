@@ -13,12 +13,14 @@ class CelularesController extends Controller
 {
     public function index()
     {
-        $celulares = Celulares::with('marca')->paginate(10);
-        // dd($celulares);
+        $celulares = Celulares::query()
+            ->with('marca')
+            ->filter(Request::only('search', 'opcion'))
+            ->paginate(10);
 
         return Inertia::render('Celulares/Index', [
             'celulares' => $celulares,
-
+            'filters' => Request::only('search', 'opcion'),
         ]);
     }
 

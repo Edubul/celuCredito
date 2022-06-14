@@ -17,7 +17,7 @@ class CelularesFactory extends Factory
             //
             'marca_id' => $this->faker->numberBetween(1, 10),
             'modelo' => $this->faker->word(),
-            'precio' => $this->faker->randomFloat(2, 0, 100),
+            // 'precio' => $this->faker->randomFloat(2, 0, 100),
             'stock' => $this->faker->numberBetween(0, 100),
         ];
     }

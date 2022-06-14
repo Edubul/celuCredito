@@ -20,6 +20,7 @@ class VentasFactory extends Factory
             'imei' => $this->faker->ean13(),
             'numero_celular_cliente' => $this->faker->phoneNumber(),
             'cc_cliente' => $this->faker->numberBetween(1, 100),
+            'precio' => $this->faker->randomNumber(6),
             'fecha' => $this->faker->dateTimeBetween('-1 years', 'now'),
         ];
     }

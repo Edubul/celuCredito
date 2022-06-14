@@ -4,11 +4,11 @@
     <h1 class="mb-8 text-3xl font-bold">Celulares</h1>
     <div class="flex items-center justify-between mb-6">
       <search-filter v-model="form.search" class="mr-4 w-full max-w-md" @reset="reset">
-        <label class="block text-gray-700">Trashed:</label>
-        <select v-model="form.trashed" class="form-select mt-1 w-full">
+        <label class="block text-gray-700">Opciones:</label>
+        <select v-model="form.opcion" class="form-select mt-1 w-full">
           <option :value="null" />
-          <option value="with">With Trashed</option>
-          <option value="only">Only Trashed</option>
+          <option value="modelo">Modelo</option>
+          <option value="marca">Marca</option>
         </select>
       </search-filter>
       <Link class="btn-indigo" href="/celulares/create">
@@ -79,14 +79,14 @@ export default {
   },
   layout: Layout,
   props: {
-    // filters: Object,
+    filters: Object,
     celulares: Object,
   },
   data() {
     return {
       form: {
-        // search: this.filters.search,
-        // trashed: this.filters.trashed,
+        search: this.filters.search,
+        opcion: this.filters.opcion,
       },
     }
   },
@@ -94,7 +94,7 @@ export default {
     form: {
       deep: true,
       handler: throttle(function () {
-        this.$inertia.get('/organizations', pickBy(this.form), { preserveState: true })
+        this.$inertia.get('/celulares', pickBy(this.form), { preserveState: true })
       }, 150),
     },
   },

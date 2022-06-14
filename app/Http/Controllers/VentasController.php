@@ -20,9 +20,15 @@ class VentasController extends Controller
         $ventas = Ventas::select('ventas.id', 'celulares.modelo', 'marcas.name', 'ventas.nombre_cliente', 'ventas.numero_celular_cliente', 'ventas.imei', 'ventas.precio', 'ventas.fecha', 'ventas.cc_cliente')
             ->join('celulares', 'celulares.id', '=', 'ventas.id_celular')
             ->join('marcas', 'marcas.id', '=', 'celulares.marca_id')
-            ->orderBy('fecha', 'desc')->paginate(10);
-        // dd($ventas);
-        return Inertia::render('Ventas/Index', ['ventas' => $ventas]);
+            ->filter(Request::only('search', 'opcion'))
+            ->orderBy('fecha', 'desc')
+            ->paginate(10);
+
+
+        return Inertia::render('Ventas/Index', [
+            'ventas' => $ventas,
+            'filters' => Request::all('search', 'opcion'),
+        ]);
     }
 
     public function create()

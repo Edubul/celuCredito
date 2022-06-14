@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Gastos;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Request;
 use Inertia\Inertia;
@@ -13,8 +14,14 @@ class GastosController extends Controller
     //
     public function index()
     {
+
+        // dd(Request::all('search', 'opcion'));
         return Inertia::render('Gastos/Index', [
-            'gastos' => Gastos::with('user')->orderBy('fecha', 'desc')->paginate(10),
+            'filters' => Request::all('search', 'opcion'),
+            'gastos' => Gastos::with('user')
+                ->orderBy('fecha', 'desc')
+                ->filter(Request::only('search', 'opcion'))
+                ->paginate(10),
         ]);
     }
 
@@ -38,7 +45,7 @@ class GastosController extends Controller
             'fecha' => ['required'],
 
         ]);
-        // dd($request);
+        dd($request);
         Gastos::create([
             'user_id' => $request['user_id'],
             'motivo' => $request['motivo'],
