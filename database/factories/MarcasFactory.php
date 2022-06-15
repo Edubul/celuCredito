@@ -28,6 +28,7 @@ class MarcasFactory extends Factory
         return [
             //
             'name' => $this->faker->unique()->randomElement($this->marcas),
+            'account_id' => 1,
         ];
     }
 }

@@ -35,4 +35,9 @@ class Account extends Model
     {
         return $this->hasMany(Ventas::class);
     }
+
+    public function marcas()
+    {
+        return $this->hasMany(Marcas::class);
+    }
 }

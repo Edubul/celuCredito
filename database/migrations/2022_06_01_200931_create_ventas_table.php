@@ -15,6 +15,7 @@ class CreateVentasTable extends Migration
     {
         Schema::create('ventas', function (Blueprint $table) {
             $table->id();
+            $table->integer('account_id')->index();
             $table->unsignedBigInteger('id_celular');
             $table->string('nombre_cliente')->nullable(false);
             $table->string('numero_celular_cliente')->nullable(false);

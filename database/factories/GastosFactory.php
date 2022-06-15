@@ -16,6 +16,7 @@ class GastosFactory extends Factory
         return [
             //
             'user_id' => $this->faker->numberBetween(1, 6),
+            'account_id' => $this->faker->numberBetween(1, 6),
             'motivo' => $this->faker->word(),
             'cantidad' => $this->faker->numberBetween(100, 1000),
             'fecha' => now(),

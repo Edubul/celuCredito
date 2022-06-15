@@ -15,6 +15,7 @@ class CreateMarcasTable extends Migration
     {
         Schema::create('marcas', function (Blueprint $table) {
             $table->id();
+            $table->integer('account_id')->index();
             $table->string('name')->nullable(false);
         });
     }

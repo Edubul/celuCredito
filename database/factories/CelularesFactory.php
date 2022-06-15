@@ -15,6 +15,7 @@ class CelularesFactory extends Factory
     {
         return [
             //
+            'account_id' => 1,
             'marca_id' => $this->faker->numberBetween(1, 10),
             'modelo' => $this->faker->word(),
             // 'precio' => $this->faker->randomFloat(2, 0, 100),

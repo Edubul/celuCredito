@@ -15,6 +15,7 @@ class VentasFactory extends Factory
     {
         return [
             //
+            'account_id' => 1,
             'id_celular' => $this->faker->numberBetween(1, 10),
             'nombre_cliente' => $this->faker->name,
             'imei' => $this->faker->ean13(),

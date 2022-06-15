@@ -44,10 +44,13 @@ class DatabaseSeeder extends Seeder
                 $contact->update(['organization_id' => $organizations->random()->id]);
             });
 
-        Marcas::factory(10)->create();
+        Marcas::factory(10)->create([
+            'account_id' => $account->id,
+        ]);
 
         Celulares::factory(20)->create()->each(function ($celular) {
             $celular->update([
+                'account_id' => User::inRandomOrder()->first()->id,
                 'marca_id' => Marcas::inRandomOrder()->first()->id,
             ]);
         });
@@ -60,12 +63,14 @@ class DatabaseSeeder extends Seeder
 
         Ventas::factory(10)->create()->each(function ($venta) {
             $venta->update([
+                'account_id' => User::inRandomOrder()->first()->id,
                 'id_celular' => Celulares::inRandomOrder()->first()->id,
             ]);
         });
 
         Gastos::factory(10)->create()->each(function ($gasto) {
             $gasto->update([
+                'account_id' => Account::inRandomOrder()->first()->id,
                 'user_id' => User::inRandomOrder()->first()->id,
             ]);
         });

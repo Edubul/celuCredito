@@ -79,7 +79,7 @@
       <Datepicker v-model="date" :enableTimePicker="false" :format="formatter" placeholder="Start Typing ..." textInput />
     </div>
     <div class="w-auto">
-      <h1 class="p-4 text-2xl font-bold">Ventas</h1>
+      <h1 class="p-4 text-2xl font-bold">Ventas ({{ dateTime }})</h1>
       <div class="bg-white rounded-md shadow overflow-x-auto">
         <table id="pdf-content" class="w-full whitespace-nowrap">
           <thead>
@@ -123,7 +123,7 @@
         </table>
       </div>
 
-      <h1 class="p-4 text-2xl font-bold">Gastos</h1>
+      <h1 class="p-4 text-2xl font-bold">Gastos ({{ dateTime }})</h1>
       <div class="bg-white rounded-md shadow overflow-x-auto">
         <table id="pdf-content2" class="w-full whitespace-nowrap">
           <thead>
@@ -172,6 +172,22 @@
           </tbody>
         </table>
       </div>
+      <div class="mt-4 bg-white rounded-md shadow overflow-x-auto">
+        <h1 class="p-4 text-2xl font-bold">Total del día ({{ dateTime }})</h1>
+        <table id="pdf-content3" class="w-full whitespace-nowrap">
+          <tbody>
+            <tr class="hover:bg-gray-100 focus-within:bg-gray-100">
+              <td class="px-6 py-4 text-xl font-bold border-t">
+                Total del día:
+                {{ price.format(totalVentasHoy - totalGastosHoy) }}
+              </td>
+              <td class="px-6 py-4 border-t"></td>
+              <td class="px-6 py-4 border-t"></td>
+              <td class="px-6 py-4 border-t"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </template>
@@ -201,6 +217,7 @@ export default {
     totalVentasHoy: Object,
     resumenToday: Object,
     gastos: Object,
+    dateTime: String,
   },
 
   setup() {
@@ -217,6 +234,7 @@ export default {
       const doc = new jsPDF('p', 'pt')
       autoTable(doc, { html: '#pdf-content' })
       autoTable(doc, { html: '#pdf-content2' })
+      autoTable(doc, { html: '#pdf-content3' })
       doc.save('table.pdf')
     }
 

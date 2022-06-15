@@ -54,11 +54,6 @@ class User extends Authenticatable
         return $this->belongsTo(Account::class);
     }
 
-    public function reportes()
-    {
-        return $this->hasMany(Reportes::class);
-    }
-
     public function getNameAttribute()
     {
         return $this->first_name . ' ' . $this->last_name;

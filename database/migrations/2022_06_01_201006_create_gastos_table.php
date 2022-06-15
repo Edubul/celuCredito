@@ -15,6 +15,7 @@ class CreateGastosTable extends Migration
     {
         Schema::create('gastos', function (Blueprint $table) {
             $table->id();
+            $table->integer('account_id')->index();
             $table->unsignedBigInteger('user_id');
             $table->string('motivo')->nullable(false);
             $table->integer('cantidad')->nullable(false);

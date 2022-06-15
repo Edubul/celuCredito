@@ -15,6 +15,7 @@ class CreateCelularesTable extends Migration
     {
         Schema::create('celulares', function (Blueprint $table) {
             $table->id();
+            $table->integer('account_id')->index();
             $table->string('modelo')->nullable(false);
             $table->unsignedBigInteger('marca_id')->nullable(false);
             $table->integer('stock')->nullable(false);
